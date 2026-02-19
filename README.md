@@ -32,6 +32,16 @@ Sistema em Java para baixar, organizar e reproduzir músicas do YouTube e arquiv
 
 <br>
 
+## Plugin Necessário (Interface Gráfica)
+
+Para que os formulários da interface funcionem corretamente, é necessário instalar o plugin Swing UI Designer no IntelliJ IDEA.
+
+Link oficial do plugin:
+<br>
+Página: `https://plugins.jetbrains.com/plugin/25304-swing-ui-designer/versions#tabs`
+
+<br>
+
 ## Tecnologias Externas
 
 Para baixar músicas e manipular áudio, o projeto depende de:
