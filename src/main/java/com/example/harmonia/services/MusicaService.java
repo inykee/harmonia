@@ -12,18 +12,11 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Serviço responsável por:
- * - Baixar músicas usando yt-dlp + ffmpeg
- * - Salvar músicas no banco
- * - Deletar músicas do disco e do banco
- */
 @Service
 public class MusicaService {
 
     private final MusicaRepository musicaRepository;
 
-    // Caminhos das ferramentas externas e pasta de download
     private static final String YTDLP_PATH = "tools/yt-dlp.exe";
     private static final String FFMPEG_PATH = "tools/ffmpeg.exe";
     private static final String DOWNLOADS_PATH = "downloads/musicas";
@@ -32,7 +25,6 @@ public class MusicaService {
         this.musicaRepository = musicaRepository;
     }
 
-    // Baixa a música pelo título informado
     public boolean baixarMusica(String titulo) {
         String nomeArquivo = limparNome(titulo);
         String caminho = DOWNLOADS_PATH + "/" + nomeArquivo + ".wav";
@@ -60,7 +52,6 @@ public class MusicaService {
         return sucesso;
     }
 
-    // Remove o arquivo físico e o registro no banco
     public boolean deletarMusica(Musica musica) {
         File arquivo = new File(musica.getCaminho());
         boolean arquivoDeletado = !arquivo.exists() || arquivo.delete();
@@ -85,7 +76,6 @@ public class MusicaService {
         }
     }
 
-    // Monta o comando que será executado pelo ProcessBuilder
     private List<String> montarComando(String titulo, String caminho) {
         List<String> comando = new ArrayList<>();
         comando.add(YTDLP_PATH);
@@ -100,7 +90,6 @@ public class MusicaService {
         return comando;
     }
 
-    // Executa o comando externo e retorna true se finalizar com sucesso
     private boolean executarComando(List<String> comando) {
         try {
             ProcessBuilder pb = new ProcessBuilder(comando);
@@ -122,17 +111,15 @@ public class MusicaService {
         }
     }
 
-    // Cria e salva a entidade no banco
     private void salvarMusica(String titulo, String caminho) {
         MusicaRequestDto dto = new MusicaRequestDto(titulo, caminho);
         Musica musica = dto.toMusica(new Musica());
         musicaRepository.save(musica);
     }
 
-    // Remove caracteres inválidos para nome de arquivo
     private String limparNome(String nome) {
         return nome.replaceAll("[<>:\"/\\\\|?*]", "-")
                 .replace(" ", "_");
     }
-
+    
 }
