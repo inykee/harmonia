@@ -16,7 +16,7 @@
 	<artifactId>harmonia</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>harmonia</name>
-	<description>Sistema em Java para estudo de integração com ferramentas de processamento de mídia, permitindo baixar, organizar e tocar arquivos de áudio locais, com foco em execução de processos externos e manipulação de mídia.</description>
+	<description>Sistema em Java para baixar, organizar e reproduzir músicas do YouTube e arquivos de áudio locais. Permite manipulação de mídia e execução de processos externos com poucos cliques.</description>
 
 	<properties>
 		<java.version>21</java.version>
