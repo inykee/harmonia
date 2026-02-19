@@ -1,5 +1,11 @@
 <br>
 
+# ⚠️ Aviso Educacional
+
+Este projeto foi desenvolvido apenas para fins educacionais e de estudo. Embora seja possível baixar e reproduzir músicas, o foco principal do Harmonia é demonstrar a integração com ferramentas externas de manipulação de áudio, como yt-dlp e ffmpeg, e não fornecer um serviço de distribuição de músicas; ele utiliza essas tecnologias para processamento de som e execução de processos externos de forma didática.
+
+<br>
+
 # 🎵 Harmonia - Sistema de Música Local
 
 Sistema em Java para baixar, organizar e reproduzir músicas do YouTube e arquivos de áudio locais. Permite manipulação de mídia e execução de processos externos com poucos cliques.
