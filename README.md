@@ -67,7 +67,7 @@ harmonia/
 ├─ downloads/musicas/             # Pasta onde as músicas baixadas serão armazenadas
 ├─ lib/                           # Bibliotecas externas adicionadas manualmente (se houver)
 ├─ src/
-│   ├─ main/java/com/example/bibliotecaapi/
+│   ├─ main/java/com/example/harmonia/
 │   │   ├─ dtos/                  # DTOs para requests/responses
 │   │   ├─ forms/                 # Formulários de entrada ou validações de dados
 │   │   ├─ models/                # Entidades JPA (representação das tabelas)
