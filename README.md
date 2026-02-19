@@ -2,7 +2,7 @@
 
 # 🎵 Harmonia - Sistema de Música Local
 
-Sistema em Java para baixar, organizar e reproduzir músicas do YouTube e arquivos de áudio locais, com poucos cliques. Foca em manipulação de mídia e execução de processos externos.
+Sistema em Java para baixar, organizar e reproduzir músicas do YouTube e arquivos de áudio locais. Permite manipulação de mídia e execução de processos externos com poucos cliques.
 
 <br>
 
