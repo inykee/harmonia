@@ -10,10 +10,6 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.event.*;
 import java.util.List;
 
-/**
- * Tela principal do gerenciador de músicas.
- * Permite baixar, tocar, parar e deletar músicas.
- */
 public class HarmoniaForm extends JDialog {
 
     private JPanel pnlPrincipal, pnlCampos, pnlBotoes, pnlInformacoes;
@@ -37,16 +33,12 @@ public class HarmoniaForm extends JDialog {
         setTitle("Harmonia - Gerenciador de Músicas");
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 
-        carregarTabela();    // Preenche a tabela com músicas
-        configurarEventos(); // Configura botões e atalhos
+        carregarTabela();
+        configurarEventos();
         pack();
         setLocationRelativeTo(null);
     }
 
-    /**
-     * Configura os eventos da GUI.
-     * Inclui botões e fechamento da janela.
-     */
     private void configurarEventos() {
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
@@ -54,12 +46,10 @@ public class HarmoniaForm extends JDialog {
             }
         });
 
-        // Fechar com ESC
         pnlPrincipal.registerKeyboardAction(e -> dispose(),
                 KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0),
                 JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
 
-        // Baixar música
         btnBaixar.addActionListener(e -> {
             String titulo = txtTitulo.getText().trim();
             if (!titulo.isEmpty()) {
@@ -70,7 +60,6 @@ public class HarmoniaForm extends JDialog {
             }
         });
 
-        // Deletar música selecionada
         btnDeletar.addActionListener(e -> {
             int linha = tblMusicas.getSelectedRow();
             if (linha != -1) {
@@ -85,7 +74,6 @@ public class HarmoniaForm extends JDialog {
             }
         });
 
-        // Tocar música selecionada
         btnTocar.addActionListener(e -> {
             int linha = tblMusicas.getSelectedRow();
             if (linha != -1) {
@@ -96,7 +84,6 @@ public class HarmoniaForm extends JDialog {
             }
         });
 
-        // Parar reprodução
         btnParar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -105,7 +92,6 @@ public class HarmoniaForm extends JDialog {
         });
     }
 
-    // Atualiza a tabela com as músicas do banco
     private void carregarTabela() {
         DefaultTableModel modelo = new DefaultTableModel(
                 new Object[]{"Código", "Título", "Caminho"}, 0
@@ -127,5 +113,5 @@ public class HarmoniaForm extends JDialog {
 
         tblMusicas.setModel(modelo);
     }
-
+    
 }
