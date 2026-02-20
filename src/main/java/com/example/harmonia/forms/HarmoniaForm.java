@@ -12,14 +12,26 @@ import java.util.List;
 
 public class HarmoniaForm extends JDialog {
 
-    private JPanel pnlPrincipal, pnlCampos, pnlBotoes, pnlInformacoes;
-    private JScrollPane pnlTabelas;
-    private JTextPane txtInformativo;
+    // Painéis
+    private JPanel pnlPrincipal;
+    private JPanel pnlCampos;
+    private JPanel pnlBotoes;
+    private JPanel pnlInformacoes;
 
-    private JTextField txtTitulo;
+    // Componentes de tabela
+    private JScrollPane pnlTabelas;
     private JTable tblMusicas;
-    private JButton btnBaixar, btnTocar, btnParar, btnDeletar;
+
+    // Componentes de texto
+    private JTextPane txtInformativo;
+    private JTextField txtTitulo;
     private JLabel lblTitulo;
+
+    // Botões
+    private JButton btnBaixar;
+    private JButton btnTocar;
+    private JButton btnParar;
+    private JButton btnDeletar;
 
     private final MusicaRepository musicaRepository;
     private final MusicaService musicaService;
@@ -42,13 +54,10 @@ public class HarmoniaForm extends JDialog {
     private void configurarEventos() {
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
+                TocarService.parar();
                 dispose();
             }
         });
-
-        pnlPrincipal.registerKeyboardAction(e -> dispose(),
-                KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0),
-                JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
 
         btnBaixar.addActionListener(e -> {
             String titulo = txtTitulo.getText().trim();
@@ -93,25 +102,25 @@ public class HarmoniaForm extends JDialog {
     }
 
     private void carregarTabela() {
-        DefaultTableModel modelo = new DefaultTableModel(
-                new Object[]{"Código", "Título", "Caminho"}, 0
-        ) {
+        DefaultTableModel modelo = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
         };
 
+        modelo.addColumn("Código");
+        modelo.addColumn("Título");
+        modelo.addColumn("Caminho");
+
         List<Musica> musicas = musicaRepository.findAll();
+
         for (Musica musica : musicas) {
-            modelo.addRow(new Object[]{
-                    musica.getIdMusica(),
-                    musica.getTitulo(),
-                    musica.getCaminho()
-            });
+            modelo.addRow(new Object[]{musica.getIdMusica(), musica.getTitulo(), musica.getCaminho()});
         }
 
         tblMusicas.setModel(modelo);
+        tblMusicas.getTableHeader().setReorderingAllowed(false);
     }
-    
+
 }
